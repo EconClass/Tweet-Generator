@@ -10,4 +10,5 @@ import sentence
 # define some functions that compose the above modules
 
 if __name__ == '__main__':
+    pass
     # code to run when file is executed
