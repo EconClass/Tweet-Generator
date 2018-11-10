@@ -30,19 +30,24 @@ def cummulative_sample(histogram_in, num_iter):
     return result
 
 def dictionary_sample(histogram_in, num_iter=1):
+    '''
+    This function takes in a histogram and returns 
+    a list of random words from the dictionary 
+    '''
+
     max_num = all_items(histogram_in)
     cume_sum = 0
     words = []
-    compare = 0
+    count = 0
 
-    while compare < num_iter:
+    while count < num_iter: 
         rand_num = random.randint(1, max_num)
         for word in histogram_in:
             cume_sum += histogram_in[word][1]
             if cume_sum >= rand_num:
                 words.append(word)
                 break
-        compare +=1
+        count +=1
     return words
 
 if __name__ == "__main__":
