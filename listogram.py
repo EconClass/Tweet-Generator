@@ -47,7 +47,7 @@ class Listogram(list):
         for elem in self:
             if elem[0] == target:
                 break
-            count += 1
+            index += 1
         return index
 
 def print_histogram(word_list):
