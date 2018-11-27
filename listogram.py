@@ -15,39 +15,52 @@ class Listogram(list):
             for word in word_list:
                 self.add_count(word)
 
-    def add_count(self, word, count=1):
-        """Increase frequency count of given word by given count amount."""
-        # TODO: Increase word frequency by count
-        word = [word]
-        if word[1] is None:
-            word.append(count)
-        else: word[1] += count
-
     def frequency(self, word):
         """Return frequency count of given word, or 0 if word is not found."""
         # TODO: Retrieve word frequency count
-        for elem in self:
-            if elem[0] == word:
-                return elem[1]
+        for item in self:
+            if item[0] == word.lower():
+                return item[1]
         return 0
+
+    def add_count(self, word, count=1):
+        """Increase frequency count of given word by given count amount."""
+        word = word.lower()
+        index = 0
+        for elem in self:
+            self.types += 1
+            self.append([elem[0]])
+            if elem[0] == word:
+                elem[1] += count
+                self[index].append(count)
+                self.tokens += count
+                index +=1
+            index += 1
+            
 
     def __contains__(self, word):
         """Return boolean indicating if given word is in this histogram."""
         # TODO: Check if word is in this histogram
-        if word in self:
-            return True
-        else: return False
+        for item in self:
+            if(item[0] == word.lower()):
+                return True
+        return False
 
     def _index(self, target):
         """Return the index of entry containing given target word if found in
         this histogram, or None if target word is not found."""
         # TODO: Implement linear search to find index of entry with target word
         index = 0
+        target = target.lower()
         for elem in self:
             if elem[0] == target:
-                break
+                return index
+            elif index == len(self):
+                return 0
             index += 1
-        return index
+        return None
+            
+            
 
 def print_histogram(word_list):
     print('word list: {}'.format(word_list))
