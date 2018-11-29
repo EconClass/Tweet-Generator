@@ -67,12 +67,8 @@ class HashTable(object):
         TODO: Running time: O(???) Why and under what conditions?"""
         # TODO: Find bucket where given key belongs
         # TODO: Check if key-value entry exists in bucket
-        index = hash(key) % len(self.buckets)
-        bucket = self.buckets[index]
-        node = bucket.find(lambda item: item[0] == key)
-        if node.data == key:
-            return True
-        else: return False
+        bucket = self._find_bucket(key)
+        if 
 
     def get(self, key):
         """Return the value associated with the given key, or raise KeyError.
@@ -107,6 +103,12 @@ class HashTable(object):
         # TODO: Otherwise, raise error to tell user delete failed
         # Hint: raise KeyError('Key not found: {}'.format(key))
 
+    def _find_bucket(self, key):
+        index = hash(key) % len(self.buckets)
+        bucket = self.buckets[index]
+        find_node = bucket.find(lambda item: item[0] == key)
+        if find_node is not None:
+            return bucket
 
 def test_hash_table():
     ht = HashTable()
