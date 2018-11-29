@@ -56,7 +56,7 @@ class LinkedList(object):
         # TODO: Loop through all nodes and count one for each
         count = 0
         node = self.head
-        while node.next is not None:
+        while node is not None:
             count += 1
             node = node.next
         return count
@@ -94,11 +94,14 @@ class LinkedList(object):
         TODO: Best case running time: O(???) Why and under what conditions?
         TODO: Worst case running time: O(???) Why and under what conditions?"""
         # TODO: Loop through all nodes to find item where quality(item) is True
+
         current = self.head
+
         while current is not None:
             if quality(current.data):
-                return current
-            else: current = current.next
+                return current.data
+            current = current.next
+        return
         # TODO: Check if node's data satisfies given quality function
 
     def delete(self, item):
