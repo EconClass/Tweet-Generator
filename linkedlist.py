@@ -9,7 +9,6 @@ class Node(object):
         """Return a string representation of this node."""
         return 'Node({!r})'.format(self.data)
 
-
 class LinkedList(object):
 
     def __init__(self, items=None):
@@ -45,9 +44,11 @@ class LinkedList(object):
         # Now list contains items from all nodes
         return items  # O(1) time to return list
 
+#========================================================================================
     def is_empty(self):
         """Return a boolean indicating whether this linked list is empty."""
         return self.head is None
+#========================================================================================
 
     def length(self):
         """Return the length of this linked list by traversing its nodes.
@@ -70,6 +71,10 @@ class LinkedList(object):
         if self.tail is not None:
             self.tail.next = new
             self.tail = new
+        else:
+            self.head = new
+            self.tail = new
+
 
     def prepend(self, item):
         """Insert the given item at the head of this linked list.
@@ -80,6 +85,9 @@ class LinkedList(object):
         if self.head is not None:
             new.next = self.head
             self.head = new
+        else:
+            self.head = new
+            self.tail = new
 
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality.
@@ -87,11 +95,10 @@ class LinkedList(object):
         TODO: Worst case running time: O(???) Why and under what conditions?"""
         # TODO: Loop through all nodes to find item where quality(item) is True
         current = self.head
-        while current.next is not None:
-            if current == quality():
+        while current is not None:
+            if quality(current.data):
                 return current
-            else:
-                current = current.next
+            else: current = current.next
         # TODO: Check if node's data satisfies given quality function
 
     def delete(self, item):
