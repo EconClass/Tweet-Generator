@@ -104,7 +104,7 @@ class HashTable(object):
         compare = bucket.find(lambda data: data[0] == key)
 
         if compare:
-            bucket.delete((key,value))
+            self.delete(key)
         bucket.prepend((key,value))
 
 
