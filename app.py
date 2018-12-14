@@ -1,27 +1,13 @@
-import sys
-import string
-import random
-import cleanup
-import tokenize
-import word_count
-import sample
-import dictogram
+from flask import Flask,render_template
 
-# define some functions that compose the above modules
-from flask import Flask
+from markov import main
+
 app = Flask(__name__)
 
-def main():
-    text_list = clean_text('the_book')
-    dictionary_freq = Dictogram(text_list)
-
-    pass
-
 @app.route('/')
-def hello_world():
-    return main()
-
-
+def random_sentence():
+    
+    return render_template("main.html", sentence = main())
 
 if __name__ == '__main__':
     pass

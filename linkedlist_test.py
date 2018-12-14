@@ -96,20 +96,20 @@ class LinkedListTest(unittest.TestCase):
         ll.prepend('A')
         assert ll.length() == 4
 
-    # def test_length_after_delete(self):
-    #     ll = LinkedList(['A', 'B', 'C', 'D', 'E'])
-    #     assert ll.length() == 5
-    #     # Delete should decrease length
-    #     ll.delete('A')
-    #     assert ll.length() == 4
-    #     ll.delete('E')
-    #     assert ll.length() == 3
-    #     ll.delete('C')
-    #     assert ll.length() == 2
-    #     ll.delete('D')
-    #     assert ll.length() == 1
-    #     ll.delete('B')
-    #     assert ll.length() == 0
+    def test_length_after_delete(self):
+        ll = LinkedList(['A', 'B', 'C', 'D', 'E'])
+        assert ll.length() == 5
+        # Delete should decrease length
+        ll.delete('A')
+        assert ll.length() == 4
+        ll.delete('E')
+        assert ll.length() == 3
+        ll.delete('C')
+        assert ll.length() == 2
+        ll.delete('D')
+        assert ll.length() == 1
+        ll.delete('B')
+        assert ll.length() == 0
 
     def test_append(self):
         ll = LinkedList()

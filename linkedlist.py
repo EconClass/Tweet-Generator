@@ -124,19 +124,22 @@ class LinkedList(object):
         Worst case running time: O(n) Why and under what conditions?
         Where the item is the last in the list or not in the list at all.
         """
-        current = self.head
-        previous = None
-        while current is not None:
-            if current.data == item:
-                self.size -= 1
+        current = self.head # O(1)
+        previous = None # O(1)
+        # O(n) when it reaches the end of the list
+        while current is not None: 
+            # Check if current node has the item we're looking for
+            if current.data == item: 
+                self.size -= 1 # O(1)
+                # Check if the current node is the last one
                 if current.next is None:
-                    self.tail = previous
+                    self.tail = previous # O(1)
                 if previous is not None:
-                    previous.next = current.next
-                    return self.head
+                    previous.next = current.next # O(1)
+                    return self.head # O(1)
                 else:
-                    self.head = current.next
-                    return self.head
+                    self.head = current.next # O(1)
+                    return self.head # O(1)
             previous = current
             current = current.next
         raise ValueError('Item not found: {}'.format(item))

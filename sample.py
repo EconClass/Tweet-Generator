@@ -1,40 +1,41 @@
-import word_count
 import random
 from cleanup import clean_text
-from word_count import histogram, all_items
+from dictogram import Dictogram
+from listogram import Listogram
 
-def dictionary_sample(histogram_in, num_iter=1):
-    '''
-    This function takes in a histogram and returns 
-    a list of random words from the dictionary 
-    '''
+def dictionary_sample(histogram_in):
+    cap = 0
+    for word in histogram_in:
+        cap += histogram_in[word]
+    value = random.randint(0, cap)
 
-    max_num = all_items(histogram_in)
-    cume_sum = 0
-    words = []
-    count = 0
+    cume = 0
+    for word in histogram_in:
+        cume += histogram_in[word]
+        if(cume > value):
+            return word
 
-    # Loop counts number of samples taken from dictionary
-    while count < num_iter: 
-        rand_num = random.randint(1, max_num)
+def sample_list_O_stuff(histogram_in): # stuff means tuples or lists
+    cap = 0
+    i = 0
+    while i < len(histogram_in):
+        cap += histogram_in[i][1]
+        i += 1
 
-        # Iterate through all keys in dictionary
-        for word in histogram_in: 
+    value = random.randint(0, cap)
 
-            # Add number of occurances to cummulative variable 
-            cume_sum += histogram_in[word][1]
+    cume = 0
+    index = 0
+    while index < len(histogram_in):
+        cume += histogram_in[index][1]
+        if cume > value:
+            return histogram_in[index][0]
+        index += 1
 
-            # Add word to return list and exit "for" loop
-            if cume_sum >= rand_num:
-                words.append(word)
-                break
-        
-        # Adds 1 to count after for loop executes
-        count +=1
-    return words
 
 if __name__ == "__main__":
-    text = clean_text('the_book.txt')
-    hist = histogram(text)
-    # print(cummulative_sample(hist, 9))
+    text = clean_text('book_1.txt')
+    hist = Dictogram(text)
+    list_hist = Listogram(text)
+    print(sample_list_O_stuff(list_hist))
     print(dictionary_sample(hist))

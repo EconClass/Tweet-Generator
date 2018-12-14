@@ -73,32 +73,39 @@ class HashTable(object):
         # Loop through all buckets
         count = 0 # O(1)
         for bucket in self.buckets: # O(b)
-            count += bucket.size # O(1) ##size is a property of the linked list that tracks the number of nodes in the list##
+            ## size is a property of the linked list that tracks the number of nodes in the list ##
+            count += bucket.size # O(1) 
         return count # O(1)
 
     def contains(self, key):
         """Return True if this hash table contains the given key, or False.
-        Running time: O(???) Why and under what conditions?"""
+        Running time: O(l) if key is not in list or last in the list.
+        O(1) if key is first on list.
+        """
         
         index = self._bucket_index(key) # O(1)
         bucket = self.buckets[index] # O(1)
-        compare = bucket.find(lambda data: data[0] == key) # O(1) or O(n) where n = number of nodes in the list
 
-        if compare:
-            return True
-        return False
+        # O(1) or O(l) where l = number of nodes in the list
+        compare = bucket.find(lambda data: data[0] == key) 
+
+        if compare: # O(1)
+            return True # O(1)
+        return False # O(1)
 
     def get(self, key):
         """Return the value associated with the given key, or raise KeyError.
-        Running time: O(???) Why and under what conditions?"""
+        Running time: O(l) or O(1) Why and under what conditions?"""
         
-        index = self._bucket_index(key)
-        bucket = self.buckets[index]
-        compare = bucket.find(lambda data: data[0] == key)
+        index = self._bucket_index(key) # O(1)
+        bucket = self.buckets[index] # O(1)
 
-        if compare:
-            return compare[1]
-        else: raise KeyError('Key not found: {}'.format(key))
+        # O(1) or O(l) where l = number of nodes in the list
+        compare = bucket.find(lambda data: data[0] == key) 
+
+        if compare: # O(1)
+            return compare[1] # O(1)
+        else: raise KeyError('Key not found: {}'.format(key)) # O(1)
 
     def set(self, key, value):
         """Insert or update the given key with its associated value.
@@ -106,6 +113,8 @@ class HashTable(object):
         
         index = self._bucket_index(key)
         bucket = self.buckets[index]
+
+        # O(1) or O(l) where l = number of nodes in the list
         compare = bucket.find(lambda data: data[0] == key)
 
         if compare:
@@ -115,14 +124,20 @@ class HashTable(object):
 
     def delete(self, key):
         """Delete the given key from this hash table, or raise KeyError.
-        Running time: O(???) Why and under what conditions?"""
+        Running time: O(l) Why and under what conditions?
+        If the item containing the key is not in the list or is the last in the list."""
         
-        index = self._bucket_index(key)
-        bucket = self.buckets[index]
+        index = self._bucket_index(key) # O(1)
+        bucket = self.buckets[index] # O(1)
+
+        # O(1) or O(l) where l = number of items in the list
         compare = bucket.find(lambda data: data[0] == key)
+
+        # O(1) or O(l) where l = number of items in the list
         value = self.get(key)
 
         if compare:
+            # O(1) or O(l) where l = number of items in the list
             bucket.delete((key,value))
         else: raise KeyError('Key not found: {}'.format(key))
 
