@@ -1,3 +1,4 @@
+import string
 def clean_text(source_text):
     '''
     This function accesses a source file and uses punctuation_table to 

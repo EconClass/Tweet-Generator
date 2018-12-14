@@ -64,8 +64,10 @@ class LinkedList(object):
         return self.size
 
     def append(self, item):
-        """Insert the given item at the tail of this linked list.
+        """
+        Insert the given item at the tail of this linked list.
         Running time: O(1) Why and under what conditions?
+        Changing pointers to different data and nodes takes constant time.
         """
         
         new = Node(item)
@@ -80,7 +82,8 @@ class LinkedList(object):
 
     def prepend(self, item):
         """Insert the given item at the head of this linked list.
-        Running time: O(1) Why and under what conditions?"""
+        Running time: O(1) Why and under what conditions?
+        Changing pointers to different data and nodes takes constant time."""
         # Create new node to hold given item
         new = Node(item)
         # Prepend node before head, if it exists
@@ -94,9 +97,13 @@ class LinkedList(object):
 
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality.
+        Where n represents the number of nodes in the list.
+
         Best case running time: O(1) Why and under what conditions?
-        Where 
-        Worst case running time: O(???) Why and under what conditions?"""
+        Where the item is the first or very early in the list.
+
+        Worst case running time: O(n) Why and under what conditions?
+        Where the item is the last in the list or not in the list at all."""
         # Loop through all nodes to find item where quality(item) is True
 
         current = self.head
@@ -109,8 +116,14 @@ class LinkedList(object):
 
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError.
-        Best case running time: O(???) Why and under what conditions?
-        Worst case running time: O(???) Why and under what conditions?"""
+        Where n represents the number of nodes in the list.
+
+        Best case running time: O(1) Why and under what conditions?
+        Where the item is the first or very early in the list.
+        
+        Worst case running time: O(n) Why and under what conditions?
+        Where the item is the last in the list or not in the list at all.
+        """
         current = self.head
         previous = None
         while current is not None:

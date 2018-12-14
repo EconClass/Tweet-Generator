@@ -26,50 +26,63 @@ class HashTable(object):
 
     def keys(self):
         """Return a list of all keys in this hash table.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        Running time: O(p) Why and under what conditions?
+        Where p represents the number of key:value pairs in the hashtable.
+        p can also be found by b*i where:
+        b = number of buckets
+        i = number of items in the bucket"""
         # Collect all keys in each bucket
         all_keys = []
-        for bucket in self.buckets:
-            for key, value in bucket.items():
-                all_keys.append(key)
-        return all_keys
+        # O(b) where b = number of buckets
+        for bucket in self.buckets: # O(b)
+            for key, _ in bucket.items(): # O(i)
+                all_keys.append(key) # O(1)
+        return all_keys # O(1)
 
     def values(self):
         """Return a list of all values in this hash table.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        Running time: O(p) Why and under what conditions?
+        Where p represents the number of key:value pairs in the hashtable.
+        p can also be found by b*i where:
+        b = number of buckets
+        i = number of items in the bucket"""
         all_values = []
-        for bucket in self.buckets:
-            for key, value in bucket.items():
-                all_values.append(value)
-        return all_values 
+        
+        for bucket in self.buckets:# O(b)
+            for _, value in bucket.items():# O(i)
+                all_values.append(value) # O(1)
+        return all_values # O(1)
 
     def items(self):
         """Return a list of all items (key-value pairs) in this hash table.
-        TODO: Running time: O(???) Why and under what conditions?"""
-        # Collect all pairs of key-value entries in each bucket
-        all_items = []
-        for bucket in self.buckets:
-            all_items.extend(bucket.items())
-        return all_items
+        Running time: O(p) Why and under what conditions?
+        Where p represents the number of key:value pairs in the hashtable.
+        p can also be found by b*i where:
+        b = number of buckets
+        i = number of items in the bucket"""
+        
+        all_items = [] # O(1)
+        for bucket in self.buckets: # O(b)
+            all_items.extend(bucket.items()) # O(i)
+        return all_items# O(1)
 
     def length(self):
         """Return the number of key-value entries by traversing its buckets.
-        TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Loop through all buckets
-        count = 0
-        for bucket in self.buckets:
-            count += bucket.size
-        return count
-        # TODO: Count number of key-value entries in each bucket
+        Running time: O(b) Why and under what conditions?
+        """
+        # Loop through all buckets
+        count = 0 # O(1)
+        for bucket in self.buckets: # O(b)
+            count += bucket.size # O(1) ##size is a property of the linked list that tracks the number of nodes in the list##
+        return count # O(1)
 
     def contains(self, key):
         """Return True if this hash table contains the given key, or False.
-        TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Find bucket where given key belongs
-        # TODO: Check if key-value entry exists in bucket
-        index = self._bucket_index(key)
-        bucket = self.buckets[index]
-        compare = bucket.find(lambda data: data[0] == key)
+        Running time: O(???) Why and under what conditions?"""
+        
+        index = self._bucket_index(key) # O(1)
+        bucket = self.buckets[index] # O(1)
+        compare = bucket.find(lambda data: data[0] == key) # O(1) or O(n) where n = number of nodes in the list
 
         if compare:
             return True
@@ -77,11 +90,8 @@ class HashTable(object):
 
     def get(self, key):
         """Return the value associated with the given key, or raise KeyError.
-        TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Find bucket where given key belongs
-        # TODO: Check if key-value entry exists in bucket
-        # TODO: If found, return value associated with given key
-        # TODO: Otherwise, raise error to tell user get failed
+        Running time: O(???) Why and under what conditions?"""
+        
         index = self._bucket_index(key)
         bucket = self.buckets[index]
         compare = bucket.find(lambda data: data[0] == key)
@@ -90,15 +100,10 @@ class HashTable(object):
             return compare[1]
         else: raise KeyError('Key not found: {}'.format(key))
 
-        # Hint: raise KeyError('Key not found: {}'.format(key))
-
     def set(self, key, value):
         """Insert or update the given key with its associated value.
-        TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Find bucket where given key belongs
-        # TODO: Check if key-value entry exists in bucket
-        # TODO: If found, update value associated with given key
-        # TODO: Otherwise, insert given key-value entry into bucket
+        Running time: O(???) Why and under what conditions?"""
+        
         index = self._bucket_index(key)
         bucket = self.buckets[index]
         compare = bucket.find(lambda data: data[0] == key)
@@ -110,12 +115,8 @@ class HashTable(object):
 
     def delete(self, key):
         """Delete the given key from this hash table, or raise KeyError.
-        TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Find bucket where given key belongs
-        # TODO: Check if key-value entry exists in bucket
-        # TODO: If found, delete entry associated with given key
-        # TODO: Otherwise, raise error to tell user delete failed
-        # Hint: raise KeyError('Key not found: {}'.format(key))
+        Running time: O(???) Why and under what conditions?"""
+        
         index = self._bucket_index(key)
         bucket = self.buckets[index]
         compare = bucket.find(lambda data: data[0] == key)

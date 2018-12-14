@@ -7,10 +7,10 @@ def histogram(iterable):
     the number of times the item appears in the source text.
     '''
     # Empty dictionary to be used to log occurances of items
-    dictionary = dict()
+    dictionary = {}
 
     # List of unique items to be used as keys for dictionary
-    unique_list = list()
+    unique_list = []
     
     for item in iterable:
         if item not in unique_list:
